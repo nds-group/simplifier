@@ -4,18 +4,18 @@ The mapping of metadata collected at cellular Base Stations (BSs) to the geograp
 
 Some of the studies that rely on Voronoi tessellation includes:
 
-* [Second-level Digital Divide: A Longitudinal Study of Mobile Traffic Consumption Imbalance in France.](link)
-* [News or social media? Socio-economic divide of mobile service consumption.](link)
-* [Impact of Later-Stages COVID-19 Response Measures on Spatiotemporal Mobile Service Usage.](link)
-* [Jane Jacobs in the Sky: Predicting Urban Vitality with Open Satellite Data.](link)
-* [On the estimation of spatial density from mobile network operator data.](link)
-* [COVID-19 Flow-Maps an open geographic information system on COVID-19 and human mobility for Spain.](link)
-* [Detecting Areas of Potential High Prevalence of Chagas in Argentina.](link)
-* [Inferring dynamic origin-destination flows by transport mode using mobile phone data.](link)
-* [Joint spatial and temporal classification of mobile traffic demands.](link)
-* [The Death and Life of Great Italian Cities: A Mobile Phone Data Perspective.](link)
-* [Linking Users Across Domains with Location Data: Theory and Validation.](link)
-* [Understanding individual human mobility patterns.](link)
+* [Second-level Digital Divide: A Longitudinal Study of Mobile Traffic Consumption Imbalance in France.](https://dl.acm.org/doi/10.1145/3485447.3512125)
+* [News or social media? Socio-economic divide of mobile service consumption.](https://royalsocietypublishing.org/doi/10.1098/rsif.2021.0350)
+* [Impact of Later-Stages COVID-19 Response Measures on Spatiotemporal Mobile Service Usage.](https://ieeexplore.ieee.org/document/9796888/)
+* [Jane Jacobs in the Sky: Predicting Urban Vitality with Open Satellite Data.](https://dl.acm.org/doi/10.1145/3449257)
+* [On the estimation of spatial density from mobile network operator data.](https://ieeexplore.ieee.org/document/9647984)
+* [COVID-19 Flow-Maps an open geographic information system on COVID-19 and human mobility for Spain.](https://www.nature.com/articles/s41597-021-01093-5)
+* [Detecting Areas of Potential High Prevalence of Chagas in Argentina.](https://dl.acm.org/doi/10.1145/3308560.3316485)
+* [Inferring dynamic origin-destination flows by transport mode using mobile phone data.](https://www.sciencedirect.com/science/article/abs/pii/S0968090X18310519)
+* [Joint spatial and temporal classification of mobile traffic demands.](https://ieeexplore.ieee.org/document/8057089/)
+* [The Death and Life of Great Italian Cities: A Mobile Phone Data Perspective.](https://arxiv.org/abs/1603.04012)
+* [Linking Users Across Domains with Location Data: Theory and Validation.](https://dl.acm.org/doi/abs/10.1145/2872427.2883002)
+* [Understanding individual human mobility patterns.](https://www.nature.com/articles/nature06958)
 
 In fact, and as we show in our work, Voronoi cells exhibit poor accuracy when compared to real-word diffusion data, and their use can curb the reliability of research results. 
 Motivated by this observation, we propose a new approach to data-driven coverage modelling based on a teacher-student paradigm that combines probabilistic inference and deep learning. 
