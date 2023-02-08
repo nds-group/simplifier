@@ -58,7 +58,7 @@ pip install -r requirements.txt
 unzip Simplifier_SDUnet_ks2_015.zip
 ```
 
-First is need to import the VoronoiBoost class from the simplifier.py file:
+First is need to import the Simplifier class from the simplifier.py file:
 
 ```python
 from simplifier import Simplifier
