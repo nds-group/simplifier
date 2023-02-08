@@ -1,5 +1,7 @@
 # Simplifier: Reliable and Scalable Spatial Diffusion of Mobile Network Metadata from Base Station Locations
 
+<img src="images/maps/10010_p_l_t.png" width="25%" height="auto"/> <img src="images/maps/10010_voronoi.png" width="25%" height="auto"/> <img src="images/maps/10010_nn_best_bacelli.png" width="25%" height="auto"/>
+
 The mapping of metadata collected at cellular Base Stations (BSs) to the geographical area they cover is a cardinal operation for a wide range of studies across many scientific disciplines. The task requires modeling the spatial diffusion of each BS, i.e., the probability that a device associated with the BS is at a specific location. While precise spatial diffusion data can be estimated from elaborate processing of comprehensive information about the Radio Access Network (RAN) deployment, researchers tend to have access to meager data about the RAN, often limited to the sole location of the BSs. This makes simplistic approximations based on Voronoi tessellation the de-facto standard approach for diffusion modeling in most of the literature relying on mobile network metadata.
 
 Some of the studies that rely on Voronoi tessellation includes:
@@ -29,7 +31,6 @@ Our framework lets any researcher immediately and substantially improve the spat
 The following figure shows the results of the Simplifier approach compared to the Voronoi tessellation. The left column shows real-word diffusion data, the middle column the Voronoi tessellation, and the right column shows the Simplifier approach.
 
 <img style='float:right' src="images/maps/colorbar.png" width="25%" height="100%"/>
-<br>
 <br>
 
 | Operator coverage | Voronoi | Simplifier |
