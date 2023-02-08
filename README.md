@@ -7,24 +7,26 @@ Some of the studies that rely on Voronoi tessellation includes:
 * [Second-level Digital Divide: A Longitudinal Study of Mobile Traffic Consumption Imbalance in France.](link)
 * [News or social media? Socio-economic divide of mobile service consumption.](link)
 * [Impact of Later-Stages COVID-19 Response Measures on Spatiotemporal Mobile Service Usage.](link)
-* [CellSense: Human Mobility Recovery via Cellular Network Data Enhancement.](link)
 * [Jane Jacobs in the Sky: Predicting Urban Vitality with Open Satellite Data.](link)
 * [On the estimation of spatial density from mobile network operator data.](link)
 * [COVID-19 Flow-Maps an open geographic information system on COVID-19 and human mobility for Spain.](link)
-* [Estimation of urban zonal speed dynamics from user-activity-dependent positioning data and regional paths.](link)
-* [CellRep: Usage Representativeness Modeling and Correction Based on Multiple City-Scale Cellular Networks.](link)
 * [Detecting Areas of Potential High Prevalence of Chagas in Argentina.](link)
-* [Characterizing and Removing Oscillations in Mobile Phone Location Data.](link)
 * [Inferring dynamic origin-destination flows by transport mode using mobile phone data.](link)
 * [Joint spatial and temporal classification of mobile traffic demands.](link)
-* [Combining disparate data sources for improved poverty prediction and mapping.](link)
 * [The Death and Life of Great Italian Cities: A Mobile Phone Data Perspective.](link)
 * [Linking Users Across Domains with Location Data: Theory and Validation.](link)
-* [Content consumption cartography of the paris urban region using cellular probe data](link)
 * [Understanding individual human mobility patterns.](link)
 
-**Simplifier**, lets any researcher immediately and substantially improve the spatial mapping of mobile network metadata.
+In fact, and as we show in our work, Voronoi cells exhibit poor accuracy when compared to real-word diffusion data, and their use can curb the reliability of research results. 
+Motivated by this observation, we propose a new approach to data-driven coverage modelling based on a teacher-student paradigm that combines probabilistic inference and deep learning. 
+Our solution is 
+* Expedient, as it solely relies on BS positions exactly like legacy Voronoi tessellation, 
+* Credible, as it yields a 51% improvement in the coverage quality over Voronoi,
+* Scalable, as it can produce coverage data for thousands of BSs in minutes. 
 
+Our framework lets any researcher immediately and substantially improve the spatial mapping of mobile network metadata, and is aptly named **Simplifier**.
+
+The following figure shows the results of the Simplifier approach compared to the Voronoi tessellation. The left column shows real-word diffusion data, the middle column the Voronoi tessellation, and the right column shows the Simplifier approach.
 
 <img style='float:right' src="images/maps/colorbar.png" width="25%" height="100%"/>
 <br>
