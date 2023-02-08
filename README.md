@@ -28,7 +28,8 @@ Our solution is
 
 Our framework lets any researcher immediately and substantially improve the spatial mapping of mobile network metadata, and is aptly named **Simplifier**.
 
-The following figure shows the results of the Simplifier approach compared to the Voronoi tessellation. The left column shows real-word diffusion data, the middle column the Voronoi tessellation, and the right column shows the Simplifier approach.
+The following figure shows some predictions of Simplifier.
+The left column shows real-word diffusion data, the middle column the Voronoi tessellation, and the right column shows the Simplifier approach.
 
 <img style='float:right' src="images/maps/colorbar.png" width="25%" height="100%"/>
 <br>
