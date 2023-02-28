@@ -77,7 +77,7 @@ Simplifier use the same input as a standard voronoi tesselation,
 
 ```python
 simplifier = Simplifier(sites, 
-                        france_geojson, 
+                        france_region, 
                         'epsg:2154', 
                         model_path='Simplifier_SDUnet_ks2_015',
                         compute_voronoi_tessellation = True)
@@ -85,10 +85,13 @@ simplifier = Simplifier(sites,
 
 The main method of the simplifier class is **get_prediction**, which return the spatial diffusion estimation and the voronoi tessellation.
 
+```python
+prediction, _ = simplifier.get_prediction(site_index)
+```
+
 Also, the simplifier class has two methods to access the voronoi tessellation **get_voronoi**, and **get_all** to get all the distance matrices, the prediction and the mask of area where the prediction is not available (i.e: outside the region of interest, sea, etc).
 
 ```python
-prediction, mask = simplifier.get_prediction(site_index)
 voronoi_cell_matrix = simplifier.get_voronoi(site_index)
 distance_matrix, prediction, mask = simplifier.get_all(site_index)
 ```
