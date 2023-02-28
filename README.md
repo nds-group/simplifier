@@ -1,7 +1,5 @@
 # Simplifier: Reliable and Scalable Spatial Diffusion of Mobile Network Metadata from Base Station Locations
 
-<img src="images/maps/10010_p_l_t.png" width="25%" height="auto"/> <img src="images/maps/10010_voronoi.png" width="25%" height="auto"/> <img src="images/maps/10010_nn_best_bacelli.png" width="25%" height="auto"/>
-
 The mapping of metadata collected at cellular Base Stations (BSs) to the geographical area they cover is a cardinal operation for a wide range of studies across many scientific disciplines. The task requires modeling the spatial diffusion of each BS, i.e., the probability that a device associated with the BS is at a specific location. While precise spatial diffusion data can be estimated from elaborate processing of comprehensive information about the Radio Access Network (RAN) deployment, researchers tend to have access to meager data about the RAN, often limited to the sole location of the BSs. This makes simplistic approximations based on Voronoi tessellation the de-facto standard approach for diffusion modeling in most of the literature relying on mobile network metadata.
 
 Some of the studies that rely on Voronoi tessellation includes:
@@ -19,7 +17,7 @@ Some of the studies that rely on Voronoi tessellation includes:
 * [Linking Users Across Domains with Location Data: Theory and Validation.](https://dl.acm.org/doi/abs/10.1145/2872427.2883002)
 * [Understanding individual human mobility patterns.](https://www.nature.com/articles/nature06958)
 
-In fact, and as we show in our work, Voronoi cells exhibit poor accuracy when compared to real-word diffusion data, and their use can curb the reliability of research results. 
+In fact, and as we show in our work, **Voronoi cells exhibit poor accuracy when compared to real-word diffusion data**, and their use can curb the reliability of research results. 
 Motivated by this observation, we propose a new approach to data-driven coverage modelling based on a teacher-student paradigm that combines probabilistic inference and deep learning. 
 Our solution is 
 * Expedient, as it solely relies on BS positions exactly like legacy Voronoi tessellation, 
@@ -61,14 +59,19 @@ unzip Simplifier_SDUnet_ks2_015.zip
 First is need to import the Simplifier class from the simplifier.py file:
 
 ```python
+# we are developing a python library, 
+# in the meantime we need to add the simplifier folder to the python path
+#import sys
+#sys.path.append('<path_to_simplifier_folder>')
+
 from simplifier import Simplifier
 ```
 
 Simplifier use the same input as a standard voronoi tesselation,
 
-* **site**: set of points, i.e: base stations locations
-* **region**: the region of interest, i.e: France, Paris
-* **meter_projection**: the projection of the region, i.e: 'epsg:2154'
+* **site**: set of points, i.e: base stations locations (latitude, longitude)
+* **region**: the region of interest, i.e: France, Paris 
+* **meter_projection**: the projection of the region, i.e: [epsg:2154](https://epsg.io/2154)
 * **model_path**: the path to the model to use for the spatial diffusion estimation.
 * **compute_voronoi_tessellation**: flag to compute the voronoi tessellation or not.
 
@@ -80,12 +83,12 @@ simplifier = Simplifier(sites,
                         compute_voronoi_tessellation = True)
 ```
 
-The simplifier class has three main methods:
+The main method of the simplifier class is **get_prediction**, which return the spatial diffusion estimation and the voronoi tessellation.
 
-* **get_voronoi**: return the voronoi tessellation
-* **get_prediction**: return the spatial diffusion estimation
+Also, the simplifier class has two methods to access the voronoi tessellation **get_voronoi**, and **get_all** to get all the distance matrices, the prediction and the mask of area where the prediction is not available (i.e: outside the region of interest, sea, etc).
 
 ```python
-prediction, _ = simplifier.get_prediction(site_index)
+prediction, mask = simplifier.get_prediction(site_index)
 voronoi_cell_matrix = simplifier.get_voronoi(site_index)
+distance_matrix, prediction, mask = simplifier.get_all(site_index)
 ```

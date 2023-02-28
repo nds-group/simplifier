@@ -23,9 +23,7 @@ class Simplifier:
 
     def __init__(self, sites, region, meter_projection, model_path='Simplifier_SDUnet_ks2_015', compute_voronoi_tessellation=True):
         self.sites = sites
-        self.region = Shape(region['features'][0]['geometry'])
-        self.region = self.region.buffer(0)
-        self.region = Shapely_transform(lambda x, y: (y, x), self.region)
+        self.region = region
         
         self.meter_transform = Transformer.from_crs('epsg:4326', meter_projection).transform
         self.region_meter = Shapely_transform(self.meter_transform, self.region)
@@ -54,28 +52,46 @@ class Simplifier:
 
     def discrete_shape(self, shape_meter, left_x, bottom_y):
         # matrix dims
-        matrix = np.zeros((self.number_cells, self.number_cells))
-
-        # polygon discrete
-        xs, ys = shape_meter.exterior.xy
-        xs = np.array(xs)
-        ys = np.array(ys)
-
-        xs_discrete_matrix = (xs - left_x)//self.spatial_resolution
-        ys_discrete_matrix = (ys - bottom_y)//self.spatial_resolution
-
-        x, y = np.meshgrid(np.arange(matrix.shape[1]), np.arange(matrix.shape[0])) # make a canvas with coordinates
+        x, y = np.meshgrid(np.arange(self.number_cells), np.arange(self.number_cells)) # make a canvas with coordinates
         x, y = x.flatten(), y.flatten()
         points = np.vstack((y, x)).T 
 
-        p = Path(list(zip(ys_discrete_matrix, xs_discrete_matrix))) # make a polygon
-        grid = p.contains_points(points)
-        matrix = grid.reshape(matrix.shape)
         
-        # from True, False to 0,1
-        matrix = 1*np.array(matrix)
+        # polygon discrete
+        if shape_meter.type == 'Polygon':
+            xs, ys = shape_meter.exterior.xy
+            xs = np.array(xs)
+            ys = np.array(ys)
 
-        return matrix
+            xs_discrete_matrix = (xs - left_x)//self.spatial_resolution
+            ys_discrete_matrix = (ys - bottom_y)//self.spatial_resolution
+
+            p = Path(list(zip(ys_discrete_matrix, xs_discrete_matrix))) # make a polygon
+            grid = p.contains_points(points)
+            matrix = grid.reshape((self.number_cells, self.number_cells))
+            matrix = 1*np.array(matrix)
+            return matrix
+        
+        if shape_meter.type == 'MultiPolygon':
+            matrix = np.zeros((self.number_cells, self.number_cells))
+            for shape_meter_polygon in shape_meter:
+                xs, ys = shape_meter_polygon.exterior.xy
+                xs = np.array(xs)
+                ys = np.array(ys)
+
+                xs_discrete_matrix = (xs - left_x)//self.spatial_resolution
+                ys_discrete_matrix = (ys - bottom_y)//self.spatial_resolution
+
+                p = Path(list(zip(ys_discrete_matrix, xs_discrete_matrix))) # make a polygon
+                grid = p.contains_points(points)
+                matrix_ = grid.reshape((self.number_cells, self.number_cells))
+                matrix_ = 1*np.array(matrix_)
+                matrix += matrix_
+            # in case of overlapping
+            matrix[matrix >= 1] = 1
+            return matrix
+        
+        raise ValueError(f'Not supported shape type {shape_meter.type}')
     
     def compute_mask(self, left_x, bottom_y):
         matrix_shape = Box(left_x, bottom_y, left_x+self.number_cells*self.spatial_resolution, bottom_y+self.number_cells*self.spatial_resolution)
